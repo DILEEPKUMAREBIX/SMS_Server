@@ -13,7 +13,7 @@ import com.sms.entity.User;
 import com.sms.service.UserService;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/login")
 public class UserController {
 
 	@Autowired
