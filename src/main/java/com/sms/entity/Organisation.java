@@ -4,13 +4,23 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "sms_organization")
+@EntityListeners(AuditingEntityListener.class)
 public class Organisation {
 
 	@Id
@@ -25,15 +35,21 @@ public class Organisation {
 	private String orgNameAr;
 
 	@Column(name = "Creation_User")
-	private long user;
+	private String user;
 
 	@Column(name = "Record_status")
 	private long recordStatus;
 
-	@Column(name = "Creation_date")
+	@Column(name = "Creation_date",nullable = false, updatable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "dd-MMM-YYYY")
+	@CreatedDate
 	private Date createdDate;
 
-	@Column(name = "Update_date")
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "dd-MMM-YYYY")
+	@LastModifiedDate
+	@Column(name = "Update_date", nullable = false)
 	private Date updateDate;
 
 	public long getId() {
@@ -60,11 +76,11 @@ public class Organisation {
 		this.orgNameAr = orgNameAr;
 	}
 
-	public long getUser() {
+	public String getUser() {
 		return user;
 	}
 
-	public void setUser(long user) {
+	public void setUser(String user) {
 		this.user = user;
 	}
 
