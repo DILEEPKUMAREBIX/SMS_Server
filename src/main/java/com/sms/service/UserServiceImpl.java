@@ -57,4 +57,9 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 		user.setPassword(encodedPassword);
 		return userDao.save(user);
 	}
+
+	@Override
+	public User findOneWithUserName(String uesrname) {
+		return userDao.findByUsername(uesrname);
+	}
 }

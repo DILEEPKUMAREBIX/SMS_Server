@@ -35,12 +35,12 @@ public class Organisation {
 	private String orgNameAr;
 
 	@Column(name = "Creation_User")
-	private String user;
+	private Long user;
 
 	@Column(name = "Record_status")
 	private long recordStatus;
 
-	@Column(name = "Creation_date",nullable = false, updatable = false)
+	@Column(name = "Creation_date", nullable = false, updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(pattern = "dd-MMM-YYYY")
 	@CreatedDate
@@ -76,11 +76,11 @@ public class Organisation {
 		this.orgNameAr = orgNameAr;
 	}
 
-	public String getUser() {
+	public Long getUser() {
 		return user;
 	}
 
-	public void setUser(String user) {
+	public void setUser(Long user) {
 		this.user = user;
 	}
 

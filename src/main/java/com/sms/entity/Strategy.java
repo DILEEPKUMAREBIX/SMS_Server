@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -44,8 +45,9 @@ public class Strategy {
 	@Column(name = "Strategy_Name_Ar")
 	private String strNameAr;
 
+	@Lob
 	@Column(name = "image")
-	private String image;
+	private byte[] image;
 
 	@Column(name = "Creation_User")
 	private long user;
@@ -53,7 +55,10 @@ public class Strategy {
 	@Column(name = "Record_status")
 	private long recordStatus;
 
-	@Column(name = "Creation_date",nullable = false, updatable = false)
+	@Column(name = "Organisation_Id")
+	private long organisationId;
+
+	@Column(name = "Creation_date", nullable = false, updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(pattern = "dd-MMM-YYYY")
 	@CreatedDate
@@ -97,14 +102,6 @@ public class Strategy {
 		this.strNameAr = strNameAr;
 	}
 
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
 	public long getUser() {
 		return user;
 	}
@@ -135,6 +132,30 @@ public class Strategy {
 
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
+	}
+
+	public Organisation getOrganisation() {
+		return organisation;
+	}
+
+	public void setOrganisation(Organisation organisation) {
+		this.organisation = organisation;
+	}
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+
+	public long getOrganisationId() {
+		return organisationId;
+	}
+
+	public void setOrganisationId(long organisationId) {
+		this.organisationId = organisationId;
 	}
 
 }
